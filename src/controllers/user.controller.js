@@ -59,6 +59,7 @@ const loginUser = asyncHandler(async (req, res) => {
   const options = {
     httpOnly: true,
     secure: true, // set false if local testing without https
+    sameSite: "None"
   };
 
   res
@@ -73,7 +74,8 @@ const logoutUser=asyncHandler(
         const user=await User.findOne(req.user._id)
         const options={
             httpOnly:true,
-            secure:true
+            secure:true,
+            sameSite: "None"
         }
         user.refreshToken="";
         await user.save();
@@ -102,6 +104,7 @@ const refreshAccessToken=asyncHandler(
         const options={
             httpOnly:true,
             secure:true,
+            sameSite: "None"
         }
         res.status(200)
             .cookie("accessToken",accessToken,options)
