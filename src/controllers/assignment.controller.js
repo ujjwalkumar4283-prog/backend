@@ -82,21 +82,11 @@ const deleteAssignment = asyncHandler(async (req, res) => {
 
 
 const getAllAssignment = asyncHandler(async (req, res) => {
-  const { subject } = req.params;
+  const assignments = await Assignment.find().sort({ serialNumber: 1 });
 
-  if (!subject) {
-    throw new ApiError(400, "subject is required");
-  }
-
-  const assignments = await Assignment
-    .find({ subject })
-    .sort({ serialNumber: 1 });
-
-  
-
-  res.status(200).json(
-    new ApiResponse(200, assignments, "Assignments fetched successfully")
-  );
+  res
+    .status(200)
+    .json(new ApiResponse(200, assignments, "All assignments fetched"));
 });
 
 
