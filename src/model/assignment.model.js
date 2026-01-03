@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const assignmentSchema=new mongoose.Schema({
-    serialNumber:{type:Number,required:true,unique:true},
+    serialNumber:{type:Number,required:true},
     name:{type:String,required:true},
     subject:{type:String,required:true},
     assignment1:{type: Boolean,default:false},
